@@ -5,6 +5,10 @@
 <!-- add bootstrap link  -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- add ajax link  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    
  <!-- add css file internally  -->
     <style>
             html, body {
@@ -95,5 +99,43 @@
         </div> 
     </div>
 
+    <!-- add ajax functionallity  -->
+    <script>
+$(document).ready(function() {
+    $('#country-dropdown').on('change', function() {
+            var country_id = this.value;
+            $.ajax({
+                url: "states-by-country.php",
+                type: "POST",
+                data: {
+                    country_id: country_id
+                },
+                cache: false,
+                success: function(result){
+                    $("#state-dropdown").html(result);
+                    $('#city-dropdown').html('<option value="">Select State First</option>'); 
+                }
+            });
+        
+        
+    });    
+    $('#state-dropdown').on('change', function() {
+            var state_id = this.value;
+            $.ajax({
+                url: "cities-by-state.php",
+                type: "POST",
+                data: {
+                    state_id: state_id
+                },
+                cache: false,
+                success: function(result){
+                    $("#city-dropdown").html(result);
+                }
+            });
+        
+        
+    });
+});
+</script>
 </body>
 </html>

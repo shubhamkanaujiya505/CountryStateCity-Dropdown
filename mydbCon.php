@@ -10,7 +10,7 @@
 
     $conn= mysqli_connect($hName,$uName,$password,"$dbName");
 
-      if(!$conn){
-          die('Could not Connect MySql Server:' .mysql_error());
-      }
+    //   if(!$conn){
+    //       die('Could not Connect MySql Server:' .mysql_error());
+    //   }
 ?>

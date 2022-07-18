@@ -77,7 +77,17 @@
                     <!-- create dropdown country -->
                         <label for="country">Country</label>
                         <select class="form-control" id="country-dropdown">
-                            <option value="">Select Country</option>   
+                            <option value="">Select Country</option>  
+                            <!-- add database and fetch value from database  -->
+                            <?php
+                        require_once "mydbCon.php";
+                        $result = mysqli_query($conn,"SELECT * FROM countries");
+                        while($row = mysqli_fetch_array($result)) {
+                        ?>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row["name"];?></option>
+                        <?php
+                        }
+                        ?>
                         </select>
                     </div>
                     <!-- create dropdown State -->
